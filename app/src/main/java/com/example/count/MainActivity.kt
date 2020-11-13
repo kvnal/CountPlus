@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        button.setOnClickListener {
+        btn_minus.setOnClickListener {
             --count
             if(count<0)
                 count=999
@@ -42,8 +43,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        btn_lock.setOnCheckedChangeListener { buttonView, isChecked ->
+            layout.isEnabled = !isChecked
+            btn_minus.isEnabled=!isChecked
 
-        reset.setOnClickListener {
+        }
+
+
+
+        btn_reset.setOnClickListener {
             count=0;
             clock(count)
         }
@@ -63,3 +71,4 @@ class MainActivity : AppCompatActivity() {
         hundred.text= n[0].toString()
     }
 }
+
